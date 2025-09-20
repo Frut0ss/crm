@@ -73,25 +73,28 @@ function Home() {
 }
 
 function AppContent() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="App">
       <Router>
         {user && (
-          <nav>
-            <Link to="/">Home</Link> | 
-            <Link to="/customers">Customers</Link> | 
-            <Link to="/bookings">Bookings</Link> |
+          <nav className="top-nav">
             {user.role === 'super_admin' && (
-              <Link to="/super-admin">Super Admin</Link>
+              <>
+                <Link to="/super-admin">Super Admin</Link>
+                <button onClick={logout} className="logout-btn">Logout</button>
+              </>
             )}
             {user.role === 'business_admin' && (
-              <Link to={`/business/${user.tenantId}`}>Dashboard</Link>
+              <>
+                <Link to={`/business/${user.tenantId}`}>Dashboard</Link>
+                <button onClick={logout} className="logout-btn">Logout</button>
+              </>
             )}
           </nav>
         )}
-        <main style={{ padding: user ? '20px' : '0' }}>
+        <main style={{ padding: user ? '0' : '0' }}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             

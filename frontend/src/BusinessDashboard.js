@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 import { useParams } from 'react-router-dom';
 
 function BusinessDashboard() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { tenantId } = useParams();
   const [customers, setCustomers] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -81,11 +81,7 @@ function BusinessDashboard() {
   return (
     <div className="business-dashboard">
       <header className="dashboard-header">
-        <h1>📊 {businessName}</h1>
-        <div className="user-info">
-          <span>Welcome, {user?.username}</span>
-          <button onClick={logout} className="logout-btn">Logout</button>
-        </div>
+        <h1>{businessName}</h1>
       </header>
 
       <nav className="dashboard-nav">
@@ -93,25 +89,25 @@ function BusinessDashboard() {
           className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
         >
-          📈 Overview
+          Overview
         </button>
         <button 
           className={`nav-btn ${activeTab === 'bookings' ? 'active' : ''}`}
           onClick={() => setActiveTab('bookings')}
         >
-          📅 Bookings
+          Bookings
         </button>
         <button 
           className={`nav-btn ${activeTab === 'customers' ? 'active' : ''}`}
           onClick={() => setActiveTab('customers')}
         >
-          👥 Customers
+          Customers
         </button>
         <button 
           className={`nav-btn ${activeTab === 'widget' ? 'active' : ''}`}
           onClick={() => setActiveTab('widget')}
         >
-          🔗 Widget
+          Widget
         </button>
       </nav>
 
@@ -139,7 +135,7 @@ function BusinessDashboard() {
 
             <div className="quick-overview">
               <div className="overview-section">
-                <h3>📅 Upcoming Bookings</h3>
+                <h3>Upcoming Bookings</h3>
                 {getUpcomingBookings().slice(0, 5).map(booking => (
                   <div key={booking.id} className="booking-preview">
                     <div className="booking-info">
@@ -161,7 +157,7 @@ function BusinessDashboard() {
 
         {activeTab === 'bookings' && (
           <div className="bookings-tab">
-            <h2>📅 Booking Management</h2>
+            <h2>Booking Management</h2>
             <div className="bookings-list">
               {bookings.map(booking => (
                 <div key={booking.id} className="booking-card">
@@ -172,16 +168,16 @@ function BusinessDashboard() {
                     </span>
                   </div>
                   <div className="booking-details">
-                    <p><strong>📅 Date:</strong> {booking.date}</p>
-                    <p><strong>⏰ Time:</strong> {booking.time}</p>
-                    <p><strong>👤 Customer:</strong> {booking.customer?.name}</p>
-                    <p><strong>📧 Email:</strong> {booking.customer?.email}</p>
-                    <p><strong>📞 Phone:</strong> {booking.customer?.phone}</p>
+                    <p><strong>Date:</strong> {booking.date}</p>
+                    <p><strong>Time:</strong> {booking.time}</p>
+                    <p><strong>Customer:</strong> {booking.customer?.name}</p>
+                    <p><strong>Email:</strong> {booking.customer?.email}</p>
+                    <p><strong>Phone:</strong> {booking.customer?.phone}</p>
                     {booking.customer?.service && (
-                      <p><strong>🔧 Service:</strong> {booking.customer.service}</p>
+                      <p><strong>Service:</strong> {booking.customer.service}</p>
                     )}
                     {booking.customer?.notes && (
-                      <p><strong>📝 Notes:</strong> {booking.customer.notes}</p>
+                      <p><strong>Notes:</strong> {booking.customer.notes}</p>
                     )}
                   </div>
                 </div>
@@ -196,7 +192,7 @@ function BusinessDashboard() {
         {activeTab === 'customers' && (
           <div className="customers-tab">
             <div className="section-header">
-              <h2>👥 Customer Management</h2>
+              <h2>Customer Management</h2>
               <button 
                 onClick={() => setShowAddCustomerForm(!showAddCustomerForm)}
                 className="add-btn"
@@ -261,9 +257,9 @@ function BusinessDashboard() {
               {customers.map(customer => (
                 <div key={customer.id} className="customer-card">
                   <h4>{customer.name}</h4>
-                  <p><strong>📧 Email:</strong> {customer.email}</p>
-                  <p><strong>📞 Phone:</strong> {customer.phone}</p>
-                  <p><strong>📅 Added:</strong> {new Date(customer.id).toLocaleDateString()}</p>
+                  <p><strong>Email:</strong> {customer.email}</p>
+                  <p><strong>Phone:</strong> {customer.phone}</p>
+                  <p><strong>Added:</strong> {new Date(customer.id).toLocaleDateString()}</p>
                 </div>
               ))}
               {customers.length === 0 && (
@@ -275,12 +271,12 @@ function BusinessDashboard() {
 
         {activeTab === 'widget' && (
           <div className="widget-tab">
-            <h2>🔗 Booking Widget</h2>
+            <h2>Booking Widget</h2>
             <div className="widget-info">
               <p>Embed our booking widget on your website so customers can book appointments directly!</p>
               
               <div className="widget-preview">
-                <h3>📋 Simple Embedding (Recommended):</h3>
+                <h3>Simple Embedding (Recommended):</h3>
                 <p>Just copy and paste this code into your website where you want the booking form:</p>
                 <textarea 
                   readOnly
@@ -296,18 +292,18 @@ function BusinessDashboard() {
 <script src="${window.location.origin}/api/widget?tenant=${currentTenant}"></script>`)}
                   className="copy-btn"
                 >
-                  📋 Copy Embed Code
+                  Copy Embed Code
                 </button>
               </div>
 
               <div className="widget-features" style={{ marginTop: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-                <h4>✨ Widget Features:</h4>
+                <h4>Widget Features:</h4>
                 <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
-                  <li>📱 Mobile-responsive design</li>
-                  <li>🎨 Professional styling that matches any website</li>
-                  <li>⚡ Fast loading and lightweight</li>
-                  <li>🔒 Secure data handling</li>
-                  <li>✅ Real-time booking management</li>
+                  <li>Mobile-responsive design</li>
+                  <li>Professional styling that matches any website</li>
+                  <li>Fast loading and lightweight</li>
+                  <li>Secure data handling</li>
+                  <li>Real-time booking management</li>
                 </ul>
               </div>
 

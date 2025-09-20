@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,76 +6,87 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f8f9fa;
 }
 
 .App {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background: #f8f9fa;
 }
 
-nav {
-  padding: 20px;
-  background-color: #007acc;
-  margin-bottom: 20px;
+/* Top Navigation */
+.top-nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e1e5e9;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-nav a {
+.top-nav a {
+  color: #2c3e50;
   text-decoration: none;
-  color: white;
-  font-weight: bold;
-  margin-right: 10px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-main {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-div h1, div h2 {
-  color: #333;
-  margin-bottom: 20px;
-}
-
-input, button {
-  margin: 5px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  font-weight: 500;
   font-size: 16px;
 }
 
-button {
-  background-color: #007acc;
+.top-nav a:hover {
+  color: #3498db;
+}
+
+.top-nav .logout-btn {
+  background: #e74c3c;
   color: white;
   border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #005a9e;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #f9f9f9;
+  padding: 8px 16px;
   border-radius: 4px;
-  border-left: 4px solid #007acc;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.top-nav .logout-btn:hover {
+  background: #c0392b;
+}
+
+/* Main content area */
+main {
+  padding: 0;
+  background: transparent;
+}
+
+/* Basic form elements */
+input, button, select, textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Utility classes */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  color: #666;
+  font-size: 18px;
+}
+
+.unauthorized {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  color: #e74c3c;
+  font-size: 18px;
 }
