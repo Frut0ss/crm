@@ -420,10 +420,6 @@
   font-weight: 500;
 }
 
-/* Widget Section */
-.widget-info {
-  background: #ffffff;
-}
 
 .widget-info p {
   color: #666;
@@ -455,7 +451,6 @@
 
 .code-textarea {
   width: 100%;
-  padding: 15px;
   background: #2c3e50;
   color: #ecf0f1;
   border: none;
