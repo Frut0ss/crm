@@ -11,11 +11,31 @@
       "destination": "/api/$1"
     },
     {
+      "source": "/business/([^/]+)/widget",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/business/([^/]+)",
+      "destination": "/index.html"
+    },
+    {
       "source": "/widget",
       "destination": "/index.html"
     },
     {
-      "source": "/business/(.*)",
+      "source": "/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/super-admin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/customers",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bookings",
       "destination": "/index.html"
     },
     {
