@@ -317,7 +317,7 @@ function BusinessDashboard() {
                   rel="noopener noreferrer"
                   className="preview-btn"
                 >
-                  � View Full Embedding Guide & Demo
+                  View Full Embedding Guide & Demo
                 </a>
               </div>
             </div>
