@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password, tenantId = null) => {
     try {
+      console.log('Attempting login with:', { username, tenantId, hasPassword: !!password });
+      
       const response = await fetch('/api/auth', {
         method: 'POST',
         headers: {
@@ -38,7 +40,11 @@ export const AuthProvider = ({ children }) => {
         }),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       const data = await response.json();
+      console.log('Response data:', data);
       
       if (response.ok) {
         const userData = {
@@ -54,10 +60,12 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(userData));
         return { success: true };
       } else {
-        return { success: false, error: data.error };
+        console.error('Login failed:', data);
+        return { success: false, error: data.error || 'Login failed' };
       }
     } catch (error) {
-      return { success: false, error: 'Network error' };
+      console.error('Network error during login:', error);
+      return { success: false, error: 'Network error: ' + error.message };
     }
   };
 

@@ -1,0 +1,16 @@
+{
+  "name": "crm-system",
+  "version": "1.0.0",
+  "description": "Multi-tenant CRM system with booking widget",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -30,6 +30,12 @@ const businesses = [
 ];
 
 export default function handler(req, res) {
+  console.log('Auth API called:', {
+    method: req.method,
+    body: req.body,
+    headers: req.headers
+  });
+
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -42,24 +48,32 @@ export default function handler(req, res) {
 
   if (req.method === 'POST') {
     const { action, username, password, tenantId } = req.body;
+    
+    console.log('Login attempt:', { action, username, tenantId, hasPassword: !!password });
 
     if (action === 'login') {
       // Find user
       let user = users.find(u => u.username === username && u.password === password);
+      
+      console.log('User found:', !!user, user ? user.username : 'none');
 
       if (!user) {
+        console.log('Invalid credentials for username:', username);
         return res.status(401).json({ error: 'Invalid credentials' });
       }
 
       // For business users, check tenant ID
       if (user.role === 'business_admin') {
         if (!tenantId || user.tenantId !== tenantId) {
+          console.log('Invalid tenant ID:', { provided: tenantId, expected: user.tenantId });
           return res.status(401).json({ error: 'Invalid business ID' });
         }
       }
 
       // Generate a simple token (in production, use JWT)
       const token = `token_${user.id}_${Date.now()}`;
+
+      console.log('Login successful for user:', user.username);
 
       res.status(200).json({
         user: {
