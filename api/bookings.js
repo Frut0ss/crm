@@ -15,8 +15,19 @@ export default function handler(req, res) {
   if (req.method === 'GET') {
     res.status(200).json(bookings);
   } else if (req.method === 'POST') {
-    const { description } = req.body;
-    const booking = { id: Date.now(), description };
+    const { description, date, time, customer, status, createdAt } = req.body;
+    
+    // Create booking object with comprehensive data
+    const booking = {
+      id: Date.now(),
+      description: description || `Booking for ${customer?.name || 'Unknown'}`,
+      date: date || new Date().toISOString().split('T')[0],
+      time: time || '',
+      customer: customer || {},
+      status: status || 'pending',
+      createdAt: createdAt || new Date().toISOString()
+    };
+    
     bookings.push(booking);
     res.status(201).json(booking);
   } else {
