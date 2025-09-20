@@ -1,0 +1,8 @@
+{
+  "short_name": "CRM App",
+  "name": "Customer Relationship Management Application",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
