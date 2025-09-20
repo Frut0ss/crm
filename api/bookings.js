@@ -1,5 +1,5 @@
 // In-memory data store for demo purposes
-let customers = [];
+let bookings = [];
 
 export default function handler(req, res) {
   // Enable CORS
@@ -13,12 +13,12 @@ export default function handler(req, res) {
   }
 
   if (req.method === 'GET') {
-    res.status(200).json(customers);
+    res.status(200).json(bookings);
   } else if (req.method === 'POST') {
-    const { name } = req.body;
-    const customer = { id: Date.now(), name };
-    customers.push(customer);
-    res.status(201).json(customer);
+    const { description } = req.body;
+    const booking = { id: Date.now(), description };
+    bookings.push(booking);
+    res.status(201).json(booking);
   } else {
     res.status(405).end();
   }
