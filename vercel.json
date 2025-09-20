@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/build",
+  "installCommand": "cd frontend && npm install",
   "routes": [
     {
       "src": "/static/(.*)",
@@ -14,15 +17,12 @@
       "dest": "/frontend/build/manifest.json"
     },
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))",
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
       "dest": "/frontend/build/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/frontend/build/index.html"
     }
-  ],
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/build",
-  "installCommand": "cd frontend && npm install"
+  ]
 }
