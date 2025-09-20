@@ -277,50 +277,48 @@ function BusinessDashboard() {
           <div className="widget-tab">
             <h2>🔗 Booking Widget</h2>
             <div className="widget-info">
-              <p>Use this widget on your website to allow customers to book appointments:</p>
+              <p>Embed our booking widget on your website so customers can book appointments directly!</p>
               
               <div className="widget-preview">
-                <h3>Widget URL:</h3>
-                <div className="url-box">
-                  <code>{window.location.origin}/business/{currentTenant}/widget</code>
-                  <button 
-                    onClick={() => navigator.clipboard.writeText(`${window.location.origin}/business/${currentTenant}/widget`)}
-                    className="copy-btn"
-                  >
-                    Copy
-                  </button>
-                </div>
-              </div>
-
-              <div className="embed-code">
-                <h3>Embed Code:</h3>
+                <h3>📋 Simple Embedding (Recommended):</h3>
+                <p>Just copy and paste this code into your website where you want the booking form:</p>
                 <textarea 
                   readOnly
-                  value={`<iframe 
-  src="${window.location.origin}/business/${currentTenant}/widget" 
-  width="100%" 
-  height="600" 
-  frameborder="0" 
-  style="border: none; border-radius: 10px;">
-</iframe>`}
+                  value={`<!-- CRM Booking Widget -->
+<div id="crm-booking-widget-container"></div>
+<script src="${window.location.origin}/api/widget?tenant=${currentTenant}"></script>`}
                   className="code-textarea"
+                  style={{ height: '80px' }}
                 />
                 <button 
-                  onClick={() => navigator.clipboard.writeText(`<iframe src="${window.location.origin}/business/${currentTenant}/widget" width="100%" height="600" frameborder="0" style="border: none; border-radius: 10px;"></iframe>`)}
+                  onClick={() => navigator.clipboard.writeText(`<!-- CRM Booking Widget -->
+<div id="crm-booking-widget-container"></div>
+<script src="${window.location.origin}/api/widget?tenant=${currentTenant}"></script>`)}
                   className="copy-btn"
                 >
-                  Copy Embed Code
+                  📋 Copy Embed Code
                 </button>
               </div>
 
-              <div className="widget-preview-link">
+              <div className="widget-features" style={{ marginTop: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                <h4>✨ Widget Features:</h4>
+                <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
+                  <li>📱 Mobile-responsive design</li>
+                  <li>🎨 Professional styling that matches any website</li>
+                  <li>⚡ Fast loading and lightweight</li>
+                  <li>🔒 Secure data handling</li>
+                  <li>✅ Real-time booking management</li>
+                </ul>
+              </div>
+
+              <div className="widget-preview-link" style={{ marginTop: '20px' }}>
                 <a 
-                  href={`${window.location.origin}/business/${currentTenant}/widget`}
+                  href={`${window.location.origin}/embed-guide.html`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="preview-btn"
                 >
-                  🔗 Preview Widget
+                  � View Full Embedding Guide & Demo
                 </a>
               </div>
             </div>

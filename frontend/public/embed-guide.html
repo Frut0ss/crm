@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Booking Widget - Embedding Instructions</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+        .demo-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e1e5e9;
+        }
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+        .option {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #e1e5e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 CRM Booking Widget - Embedding Guide</h1>
+        
+        <div class="instructions">
+            <h2>📋 How to Embed the Booking Widget</h2>
+            <p>There are two ways to embed our booking widget on your website. Both are simple and work on any website:</p>
+        </div>
+
+        <h3>Option 1: Simple Script Tag (Recommended)</h3>
+        <div class="option">
+            <p><strong>Best for:</strong> Easy setup, works everywhere</p>
+            <p>Add this code to your website where you want the booking widget to appear:</p>
+            
+            <div class="code-block">
+&lt;!-- CRM Booking Widget --&gt;
+&lt;div id="crm-booking-widget-container"&gt;&lt;/div&gt;
+&lt;script src="https://crm-pi-eight.vercel.app/api/widget?tenant=YOUR_BUSINESS_ID"&gt;&lt;/script&gt;
+            </div>
+            
+            <p><strong>Replace "YOUR_BUSINESS_ID"</strong> with your actual business ID (e.g., "demo")</p>
+            
+            <button class="copy-btn" onclick="copyScriptCode()">Copy Code</button>
+        </div>
+
+        <h3>Option 2: Manual Initialization</h3>
+        <div class="option">
+            <p><strong>Best for:</strong> Advanced users who want more control</p>
+            
+            <div class="code-block" id="manual-code">
+&lt;!-- Place this where you want the widget --&gt;
+&lt;div id="my-booking-widget"&gt;&lt;/div&gt;
+
+&lt;!-- Load the widget script --&gt;
+&lt;script src="https://crm-pi-eight.vercel.app/api/widget?tenant=YOUR_BUSINESS_ID"&gt;&lt;/script&gt;
+
+&lt;!-- Initialize with custom container ID --&gt;
+&lt;script&gt;
+  // Wait for the widget to load, then initialize
+  setTimeout(function() {
+    if (window.CRMBookingWidget) {
+      window.CRMBookingWidget.init('my-booking-widget');
+    }
+  }, 100);
+&lt;/script&gt;
+            </div>
+            
+            <button class="copy-btn" onclick="copyManualCode()">Copy Code</button>
+        </div>
+
+        <h3>🔧 Business ID Setup</h3>
+        <div class="instructions">
+            <p>Each business customer gets their own unique business ID. For example:</p>
+            <ul>
+                <li><strong>Demo Business:</strong> <code>tenant=demo</code></li>
+                <li><strong>Your Business:</strong> <code>tenant=your-business-id</code></li>
+            </ul>
+            <p>You can find your business ID in your CRM dashboard.</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎉 Live Demo</h2>
+            <p>Here's how the widget looks when embedded (using the demo business):</p>
+            
+            <!-- Demo widget container -->
+            <div id="crm-booking-widget-container"></div>
+        </div>
+
+        <div class="instructions" style="margin-top: 30px;">
+            <h3>✅ Features</h3>
+            <ul>
+                <li>📱 <strong>Mobile Responsive:</strong> Works perfectly on all devices</li>
+                <li>🎨 <strong>Professional Design:</strong> Matches modern website aesthetics</li>
+                <li>⚡ <strong>Fast Loading:</strong> Lightweight and optimized</li>
+                <li>🔒 <strong>Secure:</strong> All data is encrypted and secure</li>
+                <li>🌐 <strong>Cross-Browser:</strong> Works on all modern browsers</li>
+                <li>📧 <strong>Email Notifications:</strong> Automatic confirmation emails</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Code copied to clipboard!');
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+        
+        function copyScriptCode() {
+            const code = '<!-- CRM Booking Widget -->' + '\n' + 
+                        '<div id="crm-booking-widget-container"></div>' + '\n' + 
+                        '<script src="https://crm-pi-eight.vercel.app/api/widget?tenant=YOUR_BUSINESS_ID"><\/script>';
+            copyToClipboard(code);
+        }
+        
+        function copyManualCode() {
+            const element = document.getElementById('manual-code');
+            copyToClipboard(element.textContent);
+        }
+    </script>
+
+    <!-- Load the demo widget -->
+    <script src="https://crm-pi-eight.vercel.app/api/widget?tenant=demo"></script>
+</body>
+</html>
