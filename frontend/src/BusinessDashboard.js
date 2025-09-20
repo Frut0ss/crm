@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import { useParams } from 'react-router-dom';
 
@@ -11,11 +11,13 @@ function BusinessDashboard() {
   const [newCustomer, setNewCustomer] = useState({ name: '', email: '', phone: '' });
   const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
 
-  const fetchData = async () => {
+  const currentTenant = tenantId || user?.tenantId;
+
+  const fetchData = useCallback(async () => {
     try {
       const [customersRes, bookingsRes] = await Promise.all([
-        fetch(`/api/customers?tenant=${tenantId || user?.tenantId}`),
-        fetch(`/api/bookings?tenant=${tenantId || user?.tenantId}`)
+        fetch(`/api/customers?tenant=${currentTenant}`),
+        fetch(`/api/bookings?tenant=${currentTenant}`)
       ]);
       
       const customersData = await customersRes.json();
@@ -26,16 +28,16 @@ function BusinessDashboard() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
+  }, [currentTenant]);
 
   useEffect(() => {
     fetchData();
-  }, [tenantId, user?.tenantId]); // fetchData is stable, no need to add as dependency
+  }, [fetchData]);
 
   const addCustomer = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/customers?tenant=${tenantId || user?.tenantId}`, {
+      const response = await fetch(`/api/customers?tenant=${currentTenant}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +59,6 @@ function BusinessDashboard() {
     }
   };
 
-  const currentTenant = tenantId || user?.tenantId;
   const businessName = user?.tenantName || `Business ${currentTenant}`;
 
   const getTodaysBookings = () => {
