@@ -81,7 +81,7 @@ function SuperAdminDashboard() {
   return (
     <div className="super-admin-dashboard">
       <header className="dashboard-header">
-        <h1>🚀 Super Admin Dashboard</h1>
+        <h1>Super Admin Dashboard</h1>
         <div className="user-info">
           <span>Welcome, {user.username}</span>
           <button onClick={logout} className="logout-btn">Logout</button>
@@ -211,15 +211,21 @@ function SuperAdminDashboard() {
                     rel="noopener noreferrer"
                     className="dashboard-link"
                   >
-                    📊 View Dashboard
+                    View Dashboard
                   </a>
                   <a 
-                    href={`${window.location.origin}/business/${business.id}/widget`}
+                    href={`${window.location.origin}/super-admin/business/${business.id}`}
+                    className="admin-view-link"
+                  >
+                    Support View
+                  </a>
+                  <a 
+                    href={`${window.location.origin}/embed-guide.html`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="widget-link"
                   >
-                    📅 Booking Widget
+                    Booking Widget Guide
                   </a>
                 </div>
                 <div className="business-actions">

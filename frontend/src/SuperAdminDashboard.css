@@ -260,7 +260,8 @@
 }
 
 .dashboard-link,
-.widget-link {
+.widget-link,
+.admin-view-link {
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 6px;
@@ -277,6 +278,15 @@
 
 .dashboard-link:hover {
   background: #bbdefb;
+}
+
+.admin-view-link {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.admin-view-link:hover {
+  background: #ffe0b2;
 }
 
 .widget-link {

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
 import LoginPage from './LoginPage';
 import SuperAdminDashboard from './SuperAdminDashboard';
+import SuperAdminBusinessView from './SuperAdminBusinessView';
 import BusinessDashboard from './BusinessDashboard';
 import WidgetPage from './WidgetPage';
 import './App.css';
@@ -88,6 +89,14 @@ function AppContent() {
               element={
                 <ProtectedRoute requiredRole="super_admin">
                   <SuperAdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/super-admin/business/:tenantId" 
+              element={
+                <ProtectedRoute requiredRole="super_admin">
+                  <SuperAdminBusinessView />
                 </ProtectedRoute>
               } 
             />
