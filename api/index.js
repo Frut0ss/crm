@@ -22,5 +22,5 @@ app.post('/api/bookings', (req, res) => {
     res.status(201).json(booking);
 });
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`Backend running on port ${port}`));
+// Export the Express app as a Vercel serverless function
+module.exports = app;
