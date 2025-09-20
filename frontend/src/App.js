@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
 import LoginPage from './LoginPage';
 import SuperAdminDashboard from './SuperAdminDashboard';
@@ -58,28 +58,10 @@ function Home() {
 }
 
 function AppContent() {
-  const { user, logout } = useAuth();
-
   return (
     <div className="App">
       <Router>
-        {user && (
-          <nav className="top-nav">
-            {user.role === 'super_admin' && (
-              <>
-                <Link to="/super-admin">Super Admin</Link>
-                <button onClick={logout} className="logout-btn">Logout</button>
-              </>
-            )}
-            {user.role === 'business_admin' && (
-              <>
-                <Link to={`/business/${user.tenantId}`}>Dashboard</Link>
-                <button onClick={logout} className="logout-btn">Logout</button>
-              </>
-            )}
-          </nav>
-        )}
-        <main style={{ padding: user ? '0' : '0' }}>
+        <main>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             

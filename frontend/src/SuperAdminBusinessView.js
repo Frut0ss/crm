@@ -6,7 +6,7 @@ import './SuperAdminBusinessView.css';
 function SuperAdminBusinessView() {
   const { tenantId } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('customers');
   const [customers, setCustomers] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -137,23 +137,21 @@ function SuperAdminBusinessView() {
 
   return (
     <div className="super-admin-business-view">
-      <div className="business-view-header">
-        <div className="header-content">
-          <div className="business-info">
-            <h1>Super Admin: {businessInfo?.name || tenantId}</h1>
-            <p>Business ID: {tenantId}</p>
-            <p>Supporting customer dashboard</p>
-          </div>
-          <div className="header-actions">
-            <button 
-              onClick={() => navigate('/super-admin')}
-              className="back-btn"
-            >
-              ← Back to Super Admin
-            </button>
-          </div>
+      <header className="dashboard-header">
+        <div className="header-left">
+          <button 
+            onClick={() => navigate('/super-admin')}
+            className="back-btn-header"
+          >
+            ← Back
+          </button>
+          <h1>Super Admin: {businessInfo?.name || tenantId}</h1>
         </div>
-      </div>
+        <div className="user-info">
+          <span>Welcome, {user.username}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </header>
 
       <div className="business-view-content">
         <div className="tabs">

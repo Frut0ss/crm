@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 import { useParams } from 'react-router-dom';
 
 function BusinessDashboard() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { tenantId } = useParams();
   const [customers, setCustomers] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -82,6 +82,10 @@ function BusinessDashboard() {
     <div className="business-dashboard">
       <header className="dashboard-header">
         <h1>{businessName}</h1>
+        <div className="user-info">
+          <span>Welcome, {user?.username}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
       </header>
 
       <nav className="dashboard-nav">
