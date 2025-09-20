@@ -11,70 +11,112 @@
             margin: 0;
             padding: 20px;
             background: #f8f9fa;
+            color: #2c3e50;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e1e5e9;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         h1 {
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
         .instructions {
-            background: #e8f4fd;
+            background: #f8f9fa;
             padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border-left: 4px solid #3498db;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border: 1px solid #e1e5e9;
         }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow-x: auto;
             margin: 15px 0;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 14px;
+            line-height: 1.4;
         }
         .demo-section {
             margin-top: 40px;
             padding-top: 30px;
-            border-top: 2px solid #e1e5e9;
+            border-top: 1px solid #e1e5e9;
         }
         .copy-btn {
             background: #3498db;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 16px;
             border-radius: 4px;
             cursor: pointer;
             margin-left: 10px;
-            font-size: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
         .copy-btn:hover {
             background: #2980b9;
         }
         .option {
             background: #f8f9fa;
-            padding: 15px;
-            margin: 10px 0;
+            padding: 20px;
+            margin: 15px 0;
             border-radius: 6px;
             border: 1px solid #e1e5e9;
+        }
+        .option p {
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔗 CRM Booking Widget - Embedding Guide</h1>
+        <h1>CRM Booking Widget - Embedding Guide</h1>
         
         <div class="instructions">
-            <h2>📋 How to Embed the Booking Widget</h2>
+            <h2>How to Embed the Booking Widget</h2>
             <p>There are two ways to embed our booking widget on your website. Both are simple and work on any website:</p>
         </div>
 
@@ -119,7 +161,7 @@
             <button class="copy-btn" onclick="copyManualCode()">Copy Code</button>
         </div>
 
-        <h3>🔧 Business ID Setup</h3>
+        <h3>Business ID Setup</h3>
         <div class="instructions">
             <p>Each business customer gets their own unique business ID. For example:</p>
             <ul>
@@ -130,7 +172,7 @@
         </div>
 
         <div class="demo-section">
-            <h2>🎉 Live Demo</h2>
+            <h2>Live Demo</h2>
             <p>Here's how the widget looks when embedded (using the demo business):</p>
             
             <!-- Demo widget container -->
@@ -138,14 +180,14 @@
         </div>
 
         <div class="instructions" style="margin-top: 30px;">
-            <h3>✅ Features</h3>
+            <h3>Features</h3>
             <ul>
-                <li>📱 <strong>Mobile Responsive:</strong> Works perfectly on all devices</li>
-                <li>🎨 <strong>Professional Design:</strong> Matches modern website aesthetics</li>
-                <li>⚡ <strong>Fast Loading:</strong> Lightweight and optimized</li>
-                <li>🔒 <strong>Secure:</strong> All data is encrypted and secure</li>
-                <li>🌐 <strong>Cross-Browser:</strong> Works on all modern browsers</li>
-                <li>📧 <strong>Email Notifications:</strong> Automatic confirmation emails</li>
+                <li><strong>Mobile Responsive:</strong> Works perfectly on all devices</li>
+                <li><strong>Professional Design:</strong> Matches modern website aesthetics</li>
+                <li><strong>Fast Loading:</strong> Lightweight and optimized</li>
+                <li><strong>Secure:</strong> All data is encrypted and secure</li>
+                <li><strong>Cross-Browser:</strong> Works on all modern browsers</li>
+                <li><strong>Email Notifications:</strong> Automatic confirmation emails</li>
             </ul>
         </div>
     </div>

@@ -58,6 +58,14 @@ export const AuthProvider = ({ children }) => {
         
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
+        
+        // Auto-redirect based on user role
+        if (userData.role === 'business_admin') {
+          window.location.href = `/business/${userData.tenantId}`;
+        } else if (userData.role === 'super_admin') {
+          window.location.href = '/super-admin';
+        }
+        
         return { success: true };
       } else {
         console.error('Login failed:', data);
