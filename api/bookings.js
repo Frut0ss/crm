@@ -1,5 +1,5 @@
-// In-memory data store for demo purposes
-let bookings = [];
+// In-memory data store for demo purposes (tenant-specific)
+let bookings = {};
 
 export default function handler(req, res) {
   // Enable CORS
@@ -12,8 +12,16 @@ export default function handler(req, res) {
     return;
   }
 
+  const { tenant } = req.query;
+  const tenantId = tenant || 'default';
+
+  // Initialize tenant data if it doesn't exist
+  if (!bookings[tenantId]) {
+    bookings[tenantId] = [];
+  }
+
   if (req.method === 'GET') {
-    res.status(200).json(bookings);
+    res.status(200).json(bookings[tenantId]);
   } else if (req.method === 'POST') {
     const { description, date, time, customer, status, createdAt } = req.body;
     
@@ -25,10 +33,11 @@ export default function handler(req, res) {
       time: time || '',
       customer: customer || {},
       status: status || 'pending',
+      tenantId,
       createdAt: createdAt || new Date().toISOString()
     };
     
-    bookings.push(booking);
+    bookings[tenantId].push(booking);
     res.status(201).json(booking);
   } else {
     res.status(405).end();

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function BookingWidget() {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+  const [tenantId, setTenantId] = useState('');
   const [customerData, setCustomerData] = useState({
     name: '',
     email: '',
@@ -12,6 +13,13 @@ function BookingWidget() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Extract tenant ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const tenant = urlParams.get('tenant');
+    setTenantId(tenant || 'default');
+  }, []);
 
   // Generate available time slots
   const generateTimeSlots = () => {
@@ -60,7 +68,7 @@ function BookingWidget() {
         createdAt: new Date().toISOString()
       };
 
-      const response = await fetch('/api/bookings', {
+      const response = await fetch(`/api/bookings?tenant=${tenantId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
