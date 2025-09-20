@@ -8,27 +8,54 @@ function BusinessDashboard() {
   const [customers, setCustomers] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
+  const [newCustomer, setNewCustomer] = useState({ name: '', email: '', phone: '' });
+  const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const [customersRes, bookingsRes] = await Promise.all([
+        fetch(`/api/customers?tenant=${tenantId || user?.tenantId}`),
+        fetch(`/api/bookings?tenant=${tenantId || user?.tenantId}`)
+      ]);
+      
+      const customersData = await customersRes.json();
+      const bookingsData = await bookingsRes.json();
+      
+      setCustomers(customersData);
+      setBookings(bookingsData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [customersRes, bookingsRes] = await Promise.all([
-          fetch(`/api/customers?tenant=${tenantId || user?.tenantId}`),
-          fetch(`/api/bookings?tenant=${tenantId || user?.tenantId}`)
-        ]);
-        
-        const customersData = await customersRes.json();
-        const bookingsData = await bookingsRes.json();
-        
-        setCustomers(customersData);
-        setBookings(bookingsData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchData();
-  }, [tenantId, user?.tenantId]);
+  }, [tenantId, user?.tenantId]); // fetchData is stable, no need to add as dependency
+
+  const addCustomer = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/customers?tenant=${tenantId || user?.tenantId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCustomer)
+      });
+
+      if (response.ok) {
+        await fetchData(); // Refresh data
+        setNewCustomer({ name: '', email: '', phone: '' });
+        setShowAddCustomerForm(false);
+        alert('Customer added successfully!');
+      } else {
+        alert('Error adding customer');
+      }
+    } catch (error) {
+      console.error('Error adding customer:', error);
+      alert('Error adding customer');
+    }
+  };
 
   const currentTenant = tenantId || user?.tenantId;
   const businessName = user?.tenantName || `Business ${currentTenant}`;
@@ -167,16 +194,79 @@ function BusinessDashboard() {
 
         {activeTab === 'customers' && (
           <div className="customers-tab">
-            <h2>👥 Customer Management</h2>
+            <div className="section-header">
+              <h2>👥 Customer Management</h2>
+              <button 
+                onClick={() => setShowAddCustomerForm(!showAddCustomerForm)}
+                className="add-btn"
+              >
+                + Add New Customer
+              </button>
+            </div>
+
+            {showAddCustomerForm && (
+              <div className="add-customer-form">
+                <h3>Add New Customer</h3>
+                <form onSubmit={addCustomer}>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Name:</label>
+                      <input
+                        type="text"
+                        value={newCustomer.name}
+                        onChange={(e) => setNewCustomer({...newCustomer, name: e.target.value})}
+                        placeholder="Customer Name"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Email:</label>
+                      <input
+                        type="email"
+                        value={newCustomer.email}
+                        onChange={(e) => setNewCustomer({...newCustomer, email: e.target.value})}
+                        placeholder="customer@email.com"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Phone:</label>
+                      <input
+                        type="tel"
+                        value={newCustomer.phone}
+                        onChange={(e) => setNewCustomer({...newCustomer, phone: e.target.value})}
+                        placeholder="Phone Number"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="form-actions">
+                    <button type="submit" className="submit-btn">Add Customer</button>
+                    <button 
+                      type="button" 
+                      onClick={() => setShowAddCustomerForm(false)}
+                      className="cancel-btn"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
             <div className="customers-list">
               {customers.map(customer => (
                 <div key={customer.id} className="customer-card">
                   <h4>{customer.name}</h4>
-                  <p>Added: {new Date(customer.id).toLocaleDateString()}</p>
+                  <p><strong>📧 Email:</strong> {customer.email}</p>
+                  <p><strong>📞 Phone:</strong> {customer.phone}</p>
+                  <p><strong>📅 Added:</strong> {new Date(customer.id).toLocaleDateString()}</p>
                 </div>
               ))}
               {customers.length === 0 && (
-                <p className="no-data">No customers yet</p>
+                <p className="no-data">No customers yet. Add your first customer above!</p>
               )}
             </div>
           </div>
