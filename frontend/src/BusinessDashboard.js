@@ -144,7 +144,7 @@ function BusinessDashboard() {
                   <div key={booking.id} className="booking-preview">
                     <div className="booking-info">
                       <strong>{booking.customer?.name || 'Unknown'}</strong>
-                      <span>{booking.date} at {booking.time}</span>
+                      <span> - {booking.date} at {booking.time}</span>
                     </div>
                     <span className={`status ${booking.status}`}>
                       {booking.status}
@@ -287,8 +287,7 @@ function BusinessDashboard() {
                   value={`<!-- CRM Booking Widget -->
 <div id="crm-booking-widget-container"></div>
 <script src="${window.location.origin}/api/widget?tenant=${currentTenant}"></script>`}
-                  className="code-textarea"
-                  style={{ height: '80px' }}
+                  className="code-textarea code-textarea-tall"
                 />
                 <button 
                   onClick={() => navigator.clipboard.writeText(`<!-- CRM Booking Widget -->
@@ -300,9 +299,9 @@ function BusinessDashboard() {
                 </button>
               </div>
 
-              <div className="widget-features" style={{ marginTop: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+              <div className="widget-features">
                 <h4>Widget Features:</h4>
-                <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
+                <ul>
                   <li>Mobile-responsive design</li>
                   <li>Professional styling that matches any website</li>
                   <li>Fast loading and lightweight</li>
@@ -311,7 +310,7 @@ function BusinessDashboard() {
                 </ul>
               </div>
 
-              <div className="widget-preview-link" style={{ marginTop: '20px' }}>
+              <div className="widget-preview-link">
                 <a 
                   href={`${window.location.origin}/embed-guide.html`}
                   target="_blank"

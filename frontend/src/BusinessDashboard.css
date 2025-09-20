@@ -490,6 +490,26 @@
   text-decoration: none;
 }
 
+.widget-features {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.widget-features ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.widget-preview-link {
+  margin-top: 20px;
+}
+
+.code-textarea-tall {
+  height: 80px;
+}
+
 /* Status indicators */
 .status {
   padding: 4px 8px;

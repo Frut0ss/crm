@@ -23,10 +23,12 @@ export default function handler(req, res) {
   if (req.method === 'GET') {
     res.status(200).json(customers[tenantId]);
   } else if (req.method === 'POST') {
-    const { name } = req.body;
+    const { name, email, phone } = req.body;
     const customer = { 
       id: Date.now(), 
       name,
+      email,
+      phone,
       tenantId,
       createdAt: new Date().toISOString()
     };
