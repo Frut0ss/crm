@@ -31,7 +31,7 @@ function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>🔐 CRM System Login</h2>
+        <h2>CRM System Login</h2>
         
         <div className="login-type-selector">
           <button 

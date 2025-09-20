@@ -88,34 +88,34 @@ function BusinessDashboard() {
         </div>
       </header>
 
-      <nav className="dashboard-nav">
-        <button 
-          className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
-        >
-          Overview
-        </button>
-        <button 
-          className={`nav-btn ${activeTab === 'bookings' ? 'active' : ''}`}
-          onClick={() => setActiveTab('bookings')}
-        >
-          Bookings
-        </button>
-        <button 
-          className={`nav-btn ${activeTab === 'customers' ? 'active' : ''}`}
-          onClick={() => setActiveTab('customers')}
-        >
-          Customers
-        </button>
-        <button 
-          className={`nav-btn ${activeTab === 'widget' ? 'active' : ''}`}
-          onClick={() => setActiveTab('widget')}
-        >
-          Widget
-        </button>
-      </nav>
-
       <div className="dashboard-content">
+        <nav className="dashboard-nav">
+          <button 
+            className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
+            onClick={() => setActiveTab('overview')}
+          >
+            Overview
+          </button>
+          <button 
+            className={`nav-btn ${activeTab === 'bookings' ? 'active' : ''}`}
+            onClick={() => setActiveTab('bookings')}
+          >
+            Bookings
+          </button>
+          <button 
+            className={`nav-btn ${activeTab === 'customers' ? 'active' : ''}`}
+            onClick={() => setActiveTab('customers')}
+          >
+            Customers
+          </button>
+          <button 
+            className={`nav-btn ${activeTab === 'widget' ? 'active' : ''}`}
+            onClick={() => setActiveTab('widget')}
+          >
+            Widget
+          </button>
+        </nav>
+
         {activeTab === 'overview' && (
           <div className="overview-tab">
             <div className="stats-grid">
